@@ -1,3 +1,5 @@
+import { saveCode, loadCode } from "../utils/storage";
+
 class CodeInput extends HTMLElement {
   private _textarea: HTMLTextAreaElement;
 
@@ -27,6 +29,13 @@ class CodeInput extends HTMLElement {
         this.dispatchEvent(new CustomEvent("run"));
       }
     });
+    this._textarea.addEventListener("input", () => {
+      saveCode(this._textarea.value);
+    });
+  }
+
+  connectedCallback() {
+    this._textarea.value = loadCode();
   }
 
   get value(): string {
