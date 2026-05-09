@@ -1,4 +1,6 @@
-class CodeTextarea extends HTMLElement {
+class CodeInput extends HTMLElement {
+  private _textarea: HTMLTextAreaElement;
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -19,9 +21,21 @@ class CodeTextarea extends HTMLElement {
       </style>
       <textarea></textarea>
     `;
+    this._textarea = this.shadowRoot!.querySelector("textarea")!;
+    this._textarea.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        this.dispatchEvent(new CustomEvent("run"));
+      }
+    });
+  }
+
+  get value(): string {
+    return this._textarea.value;
+  }
+
+  set value(v: string) {
+    this._textarea.value = v;
   }
 }
 
-customElements.define("code-input", CodeTextarea);
-
-export {};
+customElements.define("code-input", CodeInput);
