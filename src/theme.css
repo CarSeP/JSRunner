@@ -1,0 +1,17 @@
+.rosepine {
+  --color-text: #e0def4;
+  --color-border: #21202e;
+  --color-header: #2a283e;
+  --color-panel1: #191724;
+  --color-panel2: #1f1d2e;
+  --color-sidebar: #26233a;
+}
+
+.tokyo-night {
+  --color-text: #c0caf5;
+  --color-border: #202330;
+  --color-header: #10101a;
+  --color-panel1: #16161e;
+  --color-panel2: #1a1b26;
+  --color-sidebar: #202330;
+}

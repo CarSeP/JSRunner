@@ -9,6 +9,9 @@ class AppHeader extends HTMLElement {
           align-items: center;
           padding-inline: 4px;
           padding-block: 2px;
+          background: var(--color-header);
+          color: var(--color-text);
+          border-bottom: 2px solid var(--color-border);
         }
         button {
           color: white;

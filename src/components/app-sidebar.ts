@@ -5,8 +5,8 @@ class AppSidebar extends HTMLElement {
         aside {
           width: 0;
           overflow: hidden;
-          background: #1a1a2e;
-          color: white;
+          background: var(--color-sidebar);
+          color: var(--color-text);
           padding: 0;
           position: fixed;
           height: 100%;
@@ -19,8 +19,10 @@ class AppSidebar extends HTMLElement {
           aside.open {
             width: 100%;
           }
+        }
       </style>
       <aside>
+        <sidebar-theme></sidebar-theme>
       </aside>
     `;
 

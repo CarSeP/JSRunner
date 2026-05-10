@@ -11,8 +11,8 @@ class CodeInput extends HTMLElement {
         textarea {
           width: 100%;
           height: 100%;
-          color: var(--color-text, #cdd6f4);
-          background: var(--color-surface, #181825);
+          color: var(--color-text);
+          background: var(--color-panel1);
           font-family: monospace;
           padding: 1rem;
           resize: none;

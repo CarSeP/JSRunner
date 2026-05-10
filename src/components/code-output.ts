@@ -10,8 +10,8 @@ class CodeOutput extends HTMLElement {
           display: block;
           width: 100%;
           height: 100%;
-          background: var(--color-elevated, #2a2a3c);
-          color: var(--color-text, #cdd6f4);
+          background: var(--color-panel2);
+          color: var(--color-text);
           font-family: monospace;
           padding: 1rem;
           overflow: auto;
