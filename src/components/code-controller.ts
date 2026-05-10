@@ -1,4 +1,5 @@
 import { runCode } from "../utils/run-code";
+import { createSplit } from "../utils/split-panel";
 
 class CodeController extends HTMLElement {
   connectedCallback() {
@@ -12,6 +13,8 @@ class CodeController extends HTMLElement {
     );
 
     if (!$input || !$output) return;
+
+    createSplit([$input, $output]);
 
     let timer: ReturnType<typeof setTimeout>;
     $input.addEventListener("input", () => {
