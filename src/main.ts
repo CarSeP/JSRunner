@@ -5,6 +5,7 @@ import "./components/code-output";
 import "./components/code-controller";
 import "./components/sidebar-theme";
 import "./components/app-sidebar";
+import "./components/header-tabs";
 import "./components/app-header";
 import { loadTheme } from "./utils/theme";
 

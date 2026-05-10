@@ -12,6 +12,7 @@ class AppHeader extends HTMLElement {
           background: var(--color-header);
           color: var(--color-text);
           border-bottom: 2px solid var(--color-border);
+          gap: 8px;
         }
         button {
           color: white;
@@ -49,10 +50,16 @@ class AppHeader extends HTMLElement {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
+        <header-tabs></header-tabs>
       </header>
     `;
 
     this.querySelector("#hamburger")?.addEventListener("click", () => this.#toggleSidebar());
+
+    const $tabs = this.querySelector("header-tabs");
+    $tabs?.addEventListener("tab-switch", (e) => {
+      this.dispatchEvent(new CustomEvent("tab-switch", { detail: (e as CustomEvent).detail }));
+    });
   }
 
   #toggleSidebar() {

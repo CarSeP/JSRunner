@@ -1,7 +1,8 @@
-import { saveCode, loadCode } from "../utils/storage";
+import { getTabs, getActiveTabId, updateTabCode } from "../utils/storage";
 
 class CodeInput extends HTMLElement {
   private _textarea: HTMLTextAreaElement;
+  private _activeTabId: string | null = null;
 
   constructor() {
     super();
@@ -30,12 +31,30 @@ class CodeInput extends HTMLElement {
       }
     });
     this._textarea.addEventListener("input", () => {
-      saveCode(this._textarea.value);
+      if (this._activeTabId) {
+        updateTabCode(this._activeTabId, this._textarea.value);
+      }
     });
   }
 
   connectedCallback() {
-    this._textarea.value = loadCode();
+    this.#loadActiveTab();
+    document.addEventListener("tab-switch-global", this.#onTabSwitch);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("tab-switch-global", this.#onTabSwitch);
+  }
+
+  #onTabSwitch = () => {
+    this.#loadActiveTab();
+  };
+
+  #loadActiveTab() {
+    this._activeTabId = getActiveTabId();
+    const tabs = getTabs();
+    const active = tabs.find((t) => t.id === this._activeTabId);
+    this._textarea.value = active?.code ?? "";
   }
 
   get value(): string {
