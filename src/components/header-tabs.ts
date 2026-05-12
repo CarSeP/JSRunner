@@ -24,8 +24,9 @@ class HeaderTabs extends HTMLElement {
           align-items: center;
           flex: 1;
           overflow-x: auto;
-          gap: 2px;
           min-width: 0;
+          height: 36px;
+          border-left: 1px solid var(--overlay);
         }
         .tabs-bar::-webkit-scrollbar {
           height: 2px;
@@ -34,33 +35,23 @@ class HeaderTabs extends HTMLElement {
           display: flex;
           align-items: center;
           gap: 4px;
-          padding: 4px 8px;
+          padding-inline: 8px;
           font-size: 13px;
-          color: rgba(255, 255, 255, 0.6);
+          color: var(--text);
           background: none;
           border: none;
           cursor: pointer;
           white-space: nowrap;
-          border-radius: 4px 4px 0 0;
           position: relative;
           min-width: 0;
+          height: 100%;
+          border-right: 1px solid var(--overlay);
         }
         .tab:hover {
-          color: rgba(255, 255, 255, 0.9);
-          background: rgba(255, 255, 255, 0.08);
+          background: var(--highlight-low);
         }
         .tab.active {
-          color: white;
-          background: rgba(255, 255, 255, 0.12);
-        }
-        .tab.active::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: var(--color-header);
+          background: var(--surface);
         }
         .tab-name {
           max-width: 120px;
@@ -78,14 +69,11 @@ class HeaderTabs extends HTMLElement {
           font-size: 14px;
           line-height: 1;
           padding: 0;
+          color: var(--text);
         }
         .tab:hover .tab-close,
         .tab.active .tab-close {
           opacity: 0.6;
-        }
-        .tab-close:hover {
-          opacity: 1;
-          background: rgba(255, 255, 255, 0.15);
         }
         .tab-add {
           width: 28px;
@@ -97,18 +85,15 @@ class HeaderTabs extends HTMLElement {
           font-size: 18px;
           padding: 0;
           opacity: 0.6;
-          color: white;
+          color: var(--text);
           border: none;
           background: none;
           cursor: pointer;
-        }
-        .tab-add:hover {
-          opacity: 1;
-          background: rgba(255, 255, 255, 0.1);
+          margin-left: 5px;
         }
         .tab-edit-input {
-          background: rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: var(--surface);
+          border: 1px solid var(--overlay);
           color: white;
           font-size: 13px;
           padding: 2px 4px;
@@ -128,7 +113,9 @@ class HeaderTabs extends HTMLElement {
       </div>
     `;
 
-    this.querySelector("#tab-add")?.addEventListener("click", () => this.#handleAddTab());
+    this.querySelector("#tab-add")?.addEventListener("click", () =>
+      this.#handleAddTab(),
+    );
     this.#renderTabs();
   }
 
@@ -191,13 +178,17 @@ class HeaderTabs extends HTMLElement {
   #switchTab(id: string) {
     setActiveTabId(id);
     this.#renderTabs();
-    this.dispatchEvent(new CustomEvent("tab-switch", { detail: { tabId: id } }));
+    this.dispatchEvent(
+      new CustomEvent("tab-switch", { detail: { tabId: id } }),
+    );
   }
 
   #handleAddTab() {
     const newTab = addTab("Unnamed window");
     this.#renderTabs();
-    this.dispatchEvent(new CustomEvent("tab-switch", { detail: { tabId: newTab.id } }));
+    this.dispatchEvent(
+      new CustomEvent("tab-switch", { detail: { tabId: newTab.id } }),
+    );
   }
 
   #handleRemoveTab(id: string) {
@@ -205,7 +196,9 @@ class HeaderTabs extends HTMLElement {
     this.#renderTabs();
     const activeId = getActiveTabId();
     if (activeId) {
-      this.dispatchEvent(new CustomEvent("tab-switch", { detail: { tabId: activeId } }));
+      this.dispatchEvent(
+        new CustomEvent("tab-switch", { detail: { tabId: activeId } }),
+      );
     }
   }
 
@@ -216,7 +209,9 @@ class HeaderTabs extends HTMLElement {
 
   #finishEdit(id: string) {
     const $bar = this.querySelector("#tabs-bar");
-    const $input = $bar?.querySelector(".tab-edit-input") as HTMLInputElement | null;
+    const $input = $bar?.querySelector(
+      ".tab-edit-input",
+    ) as HTMLInputElement | null;
     if ($input && $input.value.trim()) {
       updateTabName(id, $input.value.trim());
     }

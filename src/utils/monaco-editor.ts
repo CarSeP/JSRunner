@@ -4,10 +4,13 @@ export function renderMonacoEditor(container: HTMLElement) {
   monaco.editor.create(container, {
     value: "",
     language: "typescript",
-    theme: "vs-dark",
+    theme: "custom-dark",
     automaticLayout: true,
     fontSize: 14,
-    minimap: { enabled: true },
-    scrollBeyondLastLine: true,
+    minimap: { enabled: false },
+    scrollBeyondLastLine: false,
+    overviewRulerLanes: 0,
+    hideCursorInOverviewRuler: true,
+    scrollbar: { vertical: "hidden", horizontal: "hidden" },
   });
 }

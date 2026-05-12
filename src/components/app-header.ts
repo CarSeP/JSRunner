@@ -8,10 +8,9 @@ class AppHeader extends HTMLElement {
           display: flex;
           align-items: center;
           padding-inline: 4px;
-          padding-block: 2px;
-          background: var(--color-header);
-          color: var(--color-text);
-          border-bottom: 2px solid var(--color-border);
+          background: var(--base);
+          color: var(--text);
+          border-bottom: 1px solid var(--overlay);
           gap: 8px;
         }
         button {

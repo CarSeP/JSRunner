@@ -6,20 +6,34 @@ class CodeOutput extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot!.innerHTML = `
       <style>
-        output {
-          display: block;
+        div {
+          display: flex;
+          flex-direction: column;
           width: 100%;
           height: 100%;
-          background: var(--color-panel2);
-          color: var(--color-text);
+          background: var(--base);
+          color: var(--text);
           font-family: monospace;
-          padding: 1rem;
           overflow: auto;
           box-sizing: border-box;
           white-space: pre-wrap;
         }
+        output {
+          flex: 1;
+          padding: 1rem;
+        }
+        header {
+          background: var(--surface);
+          padding: 4px 8px;
+          color: var(--text);
+          border-bottom: 1px solid var(--overlay);
+          font-weight: 700;
+        }
       </style>
-      <output></output>
+      <div>
+        <header>OUTPUT</header>
+        <output></output>
+      </div>
     `;
     this._output = this.shadowRoot!.querySelector("output")!;
   }

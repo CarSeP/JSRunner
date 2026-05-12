@@ -1,6 +1,15 @@
 import { getActiveTabId, updateTabCode, getTabs } from "../utils/storage";
 import * as monaco from "monaco-editor";
 
+monaco.editor.defineTheme("custom-dark", {
+  base: "vs-dark",
+  inherit: true,
+  rules: [],
+  colors: {
+    "editor.background": "#1f1d2e",
+  },
+});
+
 class CodeInput extends HTMLElement {
   private editor: monaco.editor.IStandaloneCodeEditor | null = null;
   private _activeTabId: string | null = null;
@@ -22,7 +31,7 @@ class CodeInput extends HTMLElement {
     this.editor = monaco.editor.create(container, {
       value: "",
       language: "typescript",
-      theme: "vs-dark",
+      theme: "custom-dark",
       automaticLayout: true,
       fontSize: 14,
       minimap: { enabled: true },

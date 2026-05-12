@@ -3,11 +3,13 @@ import Split from "split.js";
 type direction = "horizontal" | "vertical";
 
 export function createSplit(elements: [HTMLElement, HTMLElement]): void {
-  let currentDirection: direction = window.innerWidth >= 768 ? "horizontal" : "vertical";
+  let currentDirection: direction =
+    window.innerWidth >= 768 ? "horizontal" : "vertical";
   let splitInstance = Split(elements, {
     direction: currentDirection,
-    sizes: [50, 50],
-    minSize: 0,
+    sizes: [60, 40],
+    minSize: 10,
+    gutterSize: 5,
   });
 
   const clearInlineStyles = () => {
@@ -31,8 +33,9 @@ export function createSplit(elements: [HTMLElement, HTMLElement]): void {
       clearInlineStyles();
       splitInstance = Split(elements, {
         direction: currentDirection,
-        sizes: [50, 50],
-        minSize: 0,
+        sizes: [60, 40],
+        minSize: 10,
+        gutterSize: 5,
       });
     }
   };
