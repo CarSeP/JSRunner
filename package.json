@@ -18,6 +18,7 @@
   },
   "main": "dist-electron/main.js",
   "dependencies": {
+    "monaco-editor": "^0.55.1",
     "split.js": "^1.6.5"
   }
 }

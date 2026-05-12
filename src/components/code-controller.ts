@@ -24,6 +24,11 @@ class CodeController extends HTMLElement {
       }, 1000);
     });
 
+    $input.addEventListener("run", async () => {
+      clearTimeout(timer);
+      $output.value = await runCode($input.value);
+    });
+
     const $header = document.querySelector("app-header");
     $header?.addEventListener("tab-switch", async () => {
       document.dispatchEvent(new Event("tab-switch-global"));
