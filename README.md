@@ -30,7 +30,7 @@ A lightweight desktop code editor for running JavaScript/TypeScript code in real
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/CarSeP/JSRunner
 cd JSRunner
 
 # Install dependencies
